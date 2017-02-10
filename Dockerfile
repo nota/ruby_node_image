@@ -12,13 +12,14 @@ RUN mkdir -p /usr/src/app \
     && apk add --no-cache make bash ruby ruby-io-console ruby-dev ruby-bigdecimal ruby-irb \
                gcc g++ man linux-headers libffi-dev libxml2-dev libxslt-dev curl git \
     ## For the build of node
-    && apk add --no-cache --virtual .build-deps python binutils-gold linux-headers gnupg libgcc \
+    && apk add --no-cache python binutils-gold linux-headers gnupg libgcc \
     && curl -sL https://raw.githubusercontent.com/martinheidegger/install-node/master/install_node.sh | \
        NODE_VERSION="v5.1.0" \
        YARN_VERSION="v0.19.1" \
        NODE_VARIANT="make" \
        bash \
-    && apk del .build-deps
+    && echo "WTF?" \
+    && apk del python binutils-gold linux-headers gnupg libgcc \ 
     && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/perl* /usr/share/man || true
 
 ADD entrypoint.sh /
