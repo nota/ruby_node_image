@@ -18,8 +18,8 @@ RUN mkdir -p /usr/src/app \
        YARN_VERSION="v0.19.1" \
        NODE_VARIANT="make" \
        bash \
-    && echo "WTF?" \
-    && apk del python binutils-gold linux-headers gnupg libgcc \ 
+    && apk del binutils-gold linux-headers gnupg libgcc \ 
+    && gem install bundler --no-doc \
     && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/perl* /usr/share/man || true
 
 ADD entrypoint.sh /
