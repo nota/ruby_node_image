@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 RUN mkdir -p /usr/src/app \
     && apt-get update \
-    && apt-get install -y make python2.7 gcc man curl git \
+    && apt-get install -y make python2.7 gcc g++ man curl git \
     && ln -s /usr/bin/python2.7 /usr/bin/python \
     && curl -sL https://raw.githubusercontent.com/martinheidegger/install-node/master/install_node.sh | \
        NODE_VERSION="v5.1.0" \
