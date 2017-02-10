@@ -1,4 +1,4 @@
-FROM ruby:2.3.0-slim@sha256:8f3ae4ed9790a4b2c41a891deef876a204690b8d7c6bb8cf9ec060d3cf7903fd
+FROM alpine:3.4
 
 WORKDIR /usr/src/app
 
