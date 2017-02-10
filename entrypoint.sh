@@ -10,6 +10,11 @@ log () {
   echo ""
 }
 
+run () {
+  log "$1"
+  $1
+}
+
 log "$0"
 echo "» pwd:         `pwd`"
 echo "» PATH:        ${PATH}"
@@ -24,13 +29,10 @@ echo "» python:      $(python -c 'from platform import python_version; print py
 # some restarts don't kill the server
 rm /usr/src/app/tmp/pids/server.pid 2>/dev/null
 
-log "bundle check || bundle install"
-bundle check || bundle install
-
-log "yarn install --no-emoji --ignore-optional --strict-semver --network-concurrency=15"
-yarn install --no-emoji --ignore-optional --strict-semver --network-concurrency=15
+run "bundle check || bundle install" || exit 1
+run "yarn install --no-emoji --ignore-optional --strict-semver --network-concurrency=15" || exit 1
 
 CNT=${#@}
 
-log "$@"
-$@
+run "$@" || exit 1
+
