@@ -6,9 +6,11 @@ WORKDIR /usr/src/app
 # NOTE: libffi-dev for ffi. see https://github.com/ffi/ffi/issues/485#issuecomment-191382158
 # NOTE: gcc, g++ and libc-dev for json gem
 # NOTE: linux-headers for raindrops gem
+# NOTE: python 2.7 for node
+# NOTE: bash for circleci
 RUN mkdir -p /usr/src/app \
     && apk update \
-    && apk add make ruby ruby-io-console ruby-dev ruby-bigdecimal ruby-irb \
+    && apk add make bash ruby ruby-io-console ruby-dev ruby-bigdecimal ruby-irb \
                     gcc g++ man linux-headers libffi-dev libxml2-dev libxslt-dev curl git \
     && curl -sL https://raw.githubusercontent.com/martinheidegger/install-node/master/install_node.sh | \
        NODE_VERSION="v5.1.0" \
