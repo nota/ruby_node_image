@@ -9,8 +9,7 @@ WORKDIR /usr/src/app
 RUN mkdir -p /usr/src/app \
     && apk update \
     && apk add make ruby ruby-io-console ruby-dev ruby-bigdecimal ruby-irb \
-                    python2.7 gcc g++ man linux-headers libffi-dev libxml2-dev libxslt-dev curl git \
-    && ln -s /usr/bin/python2.7 /usr/bin/python \
+                    gcc g++ man linux-headers libffi-dev libxml2-dev libxslt-dev curl git \
     && curl -sL https://raw.githubusercontent.com/martinheidegger/install-node/master/install_node.sh | \
        NODE_VERSION="v5.1.0" \
        YARN_VERSION="v0.19.1" \
