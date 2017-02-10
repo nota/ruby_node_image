@@ -29,7 +29,9 @@ echo "» python:      $(python -c 'from platform import python_version; print py
 # some restarts don't kill the server
 rm /usr/src/app/tmp/pids/server.pid 2>/dev/null
 
-run "bundle check || bundle install" || exit 1
+log "bundle check || bundle install" 
+bundle check || bundle install || exit 1
+
 run "yarn install --no-emoji --ignore-optional --strict-semver --network-concurrency=15" || exit 1
 
 CNT=${#@}
