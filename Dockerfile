@@ -2,9 +2,14 @@ FROM ruby:2.3.0-slim@sha256:8f3ae4ed9790a4b2c41a891deef876a204690b8d7c6bb8cf9ec0
 
 WORKDIR /usr/src/app
 
+# NOTE: libxml2-dev libxslt-dev for nokogiri (actionview 4.2 <- rails-html-sanitizer)
+# NOTE: libffi-dev for ffi. see https://github.com/ffi/ffi/issues/485#issuecomment-191382158
+# NOTE: gcc, g++ and libc-dev for json gem
+# NOTE: linux-headers for raindrops gem
 RUN mkdir -p /usr/src/app \
-    && apt-get update \
-    && apt-get install -y make python2.7 gcc g++ man curl git \
+    && apk update \
+    && apk add make ruby ruby-io-console ruby-dev ruby-bigdecimal ruby-irb \
+                    python2.7 gcc g++ man linux-headers libffi-dev libxml2-dev libxslt-dev curl git \
     && ln -s /usr/bin/python2.7 /usr/bin/python \
     && curl -sL https://raw.githubusercontent.com/martinheidegger/install-node/master/install_node.sh | \
        NODE_VERSION="v5.1.0" \
