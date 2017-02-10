@@ -23,10 +23,9 @@ RUN mkdir -p /usr/src/app \
     && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/perl* /usr/share/man || true
 
 ADD entrypoint.sh /
-RUN    echo "export BUNDLE_PATH=/bundle"  >> /etc/profile \
-    && echo "export PATH=\$PATH:/tmp/bin" >> /etc/profile
+ADD path.sh /etc/profile.d/
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "-l", "/entrypoint.sh"]
 
 ONBUILD ADD package.json yarn.lock ./
 ONBUILD RUN yarn install --no-emoji --ignore-optional --strict-semver --network-concurrency=15 --no-cache
