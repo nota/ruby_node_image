@@ -15,10 +15,10 @@ RUN mkdir -p /usr/src/app \
     && apk add --no-cache python binutils-gold linux-headers gnupg libgcc \
     && curl -sL https://raw.githubusercontent.com/martinheidegger/install-node/master/install_node.sh | \
        NODE_VERSION="v5.1.0" \
-       YARN_VERSION="v0.19.1" \
+       YARN_VERSION="v0.20.3" \
        NODE_VARIANT="make" \
        bash \
-    && apk del binutils-gold linux-headers gnupg libgcc \ 
+    && apk del binutils-gold linux-headers gnupg libgcc \
     && gem install bundler --no-doc \
     && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/perl* /usr/share/man || true
 
@@ -33,4 +33,3 @@ ONBUILD RUN yarn install --no-emoji --ignore-optional --strict-semver --network-
 ONBUILD ADD Gemfile* ./
 ONBUILD RUN bundle install --jobs 4 --retry 3 --deployment --without test development cap machine \
             && rm -r vendor/bundle/ruby/*/cache
-
