@@ -2,7 +2,7 @@
 
 trap exit INT TERM EXIT;
 
-if [ -z BUNDLE_PATH ]; then
+if [ -z "${BUNDLE_PATH}" ]; then
   export BUNDLE_PATH=/bundle
 fi
 export PATH=$PATH:/tmp/bin
