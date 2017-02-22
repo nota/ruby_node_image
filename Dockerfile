@@ -2,6 +2,8 @@ FROM alpine:3.4
 
 WORKDIR /usr/src/app
 
+ENV BUNDLE_PATH=/usr/local/bundle
+
 # NOTE: libxml2-dev libxslt-dev for nokogiri (actionview 4.2 <- rails-html-sanitizer)
 # NOTE: libffi-dev for ffi. see https://github.com/ffi/ffi/issues/485#issuecomment-191382158
 # NOTE: gcc, g++ and libc-dev for json gem
@@ -18,12 +20,10 @@ RUN mkdir -p /usr/src/app \
        YARN_VERSION="v0.20.3" \
        NODE_VARIANT="make" \
        bash \
-    && apk del binutils-gold linux-headers gnupg libgcc \
     && gem install bundler --no-doc \
     && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/perl* /usr/share/man || true
 
 ADD entrypoint.sh /
-ENV BUNDLE_PATH=/usr/local/bundle
 
 ENTRYPOINT ["/bin/bash", "-l", "/entrypoint.sh"]
 
