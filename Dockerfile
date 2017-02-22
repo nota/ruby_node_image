@@ -23,6 +23,7 @@ RUN mkdir -p /usr/src/app \
     && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/perl* /usr/share/man || true
 
 ADD entrypoint.sh /
+ENV BUNDLE_PATH=/usr/local/bundle
 
 ENTRYPOINT ["/bin/bash", "-l", "/entrypoint.sh"]
 
