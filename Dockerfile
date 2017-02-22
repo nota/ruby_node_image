@@ -23,7 +23,6 @@ RUN mkdir -p /usr/src/app \
     && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/perl* /usr/share/man || true
 
 ADD entrypoint.sh /
-ADD path.sh /etc/profile.d/
 
 ENTRYPOINT ["/bin/bash", "-l", "/entrypoint.sh"]
 

@@ -2,6 +2,11 @@
 
 trap exit INT TERM EXIT;
 
+if [ -z BUNDLE_PATH ]; then
+  export BUNDLE_PATH=/bundle
+fi
+export PATH=$PATH:/tmp/bin
+
 log () {
   CNT=${#1}
   node -p "'___' + (new Array($CNT)).join('_')"
