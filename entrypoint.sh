@@ -88,7 +88,7 @@ log "$0"
   echo ""
   echo "⦿ Installing gems"
   echo ""
-  bundle check || bundle install
+  bundle check || bundle install --path "${BUNDLE_PATH}"
   echo ""
 TASKS
 ) | parallel_by_line || exit 1
